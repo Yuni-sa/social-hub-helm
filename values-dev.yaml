@@ -1,0 +1,31 @@
+namespace: social-hub-dev
+
+auth:
+  appName: golang-auth
+  image: 
+    name: yuni2/golang-auth
+    tag: latest
+  
+taki:
+  appName: taki
+  image:
+    name: yuni2/taki
+    tag: latest
+
+goChat: 
+  appName: golang-chat
+  image: 
+    name: yuni2/golang-chat
+    tag: latest
+
+image:
+  appName: golang-image
+  image: 
+    name: yuni2/golang-image 
+    tag: latest
+
+reactFrontend:
+  appName: react-frontend
+  image: 
+    name: yuni2/react-frontend 
+    tag: latest

@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.taki.appName }}-deployment
+  namespace: {{ .Values.namespace }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Values.taki.appName }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.taki.appName }}
+    spec:
+      containers:
+      - name: {{ .Values.taki.appName }}
+        image: "{{ .Values.taki.image.name }}:{{ .Values.taki.image.tag }}"
+        imagePullPolicy: Always
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.taki.appName }}-service
+  namespace: {{ .Values.namespace }}
+spec:
+  selector:
+    app: {{ .Values.taki.appName }}
+  ports:
+  - port: 8080
+    targetPort: 8080
